@@ -9,6 +9,14 @@ export default {
 
     return [
       {
+        path: '/',
+        component: 'src/pages/index'
+      },
+      {
+        path: '/visualize',
+        component: 'src/pages/visualize'
+      },
+      {
         path: '/blog',
         getData: () => ({
           posts,
