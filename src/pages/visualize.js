@@ -3,7 +3,7 @@ import { useRouteData } from 'react-static'
 //
 import { Link } from 'components/Router'
 
-export default function Blog() {
+export default function Visualize() {
   const { posts } = useRouteData()
   return (
     <div>
@@ -15,13 +15,7 @@ export default function Blog() {
       </div>
       <br />
       All Posts:
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <Link to={`/blog/post/${post.id}/`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
+     
       <a href="#top" id="bottom">
         Scroll to top!
       </a>
