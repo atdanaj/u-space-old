@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Root, Routes, addPrefetchExcludes } from 'react-static'
-//
+
 import { Link, Router } from 'components/Router'
 import Dynamic from 'containers/Dynamic'
-
+import Login from './containers/Login';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './app.css'
 import ResponsiveAppBar from './components/AppBar'
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(['dynamic'])
-
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -46,7 +45,14 @@ const theme = createTheme({
   },
 });
 
+
+
 function App() {
+  const [token, setToken] = useState();
+
+  if(!token) {
+    return <ThemeProvider theme={theme}><Login setToken={setToken} /></ThemeProvider>
+  }
   return (
     <ThemeProvider theme={theme}> <Root>
     <ResponsiveAppBar/>

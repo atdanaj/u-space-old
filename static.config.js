@@ -13,6 +13,10 @@ export default {
         component: 'src/pages/index'
       },
       {
+        path: '/login',
+        component: 'src/containers/Login'
+      },
+      {
         path: '/visualize',
         component: 'src/pages/visualize'
       },
