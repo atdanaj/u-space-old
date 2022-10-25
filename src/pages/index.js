@@ -1,7 +1,11 @@
 import React from 'react'
+import TodoInput from '../components/TodoInput'
+import Tasks from '../components/Tasks'
+
 
 export default () => (
   <div style={{ textAlign: 'center' }}>
-    <h1>Welcome to React-Static</h1>
+    <TodoInput />
+    <Tasks />
   </div>
 )
