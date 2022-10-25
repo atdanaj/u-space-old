@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Root, Routes, addPrefetchExcludes } from 'react-static'
-
-import { Link, Router } from 'components/Router'
+import { ApolloProvider } from "@apollo/client";
+import { Router } from 'components/Router'
 import Dynamic from 'containers/Dynamic'
-import Login from './containers/Login';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './app.css'
 import ResponsiveAppBar from './components/AppBar'
+import connection from "./connection";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(['dynamic'])
@@ -50,10 +50,11 @@ const theme = createTheme({
 function App() {
   const [token, setToken] = useState();
 
-  if(!token) {
-    return <ThemeProvider theme={theme}><Login setToken={setToken} /></ThemeProvider>
-  }
+  // if(!token) {
+  //   return <ThemeProvider theme={theme}><Login setToken={setToken} /></ThemeProvider>
+  // }
   return (
+    <ApolloProvider client={connection}>
     <ThemeProvider theme={theme}> <Root>
     <ResponsiveAppBar/>
     <div className="content">
@@ -65,7 +66,7 @@ function App() {
       </React.Suspense>
     </div>
   </Root></ThemeProvider>
-   
+   </ApolloProvider>
   )
 }
 

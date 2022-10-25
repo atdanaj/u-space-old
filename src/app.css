@@ -36,3 +36,8 @@ nav a {
 .content {
   padding: 1rem;
 }
+
+.App {
+  text-align: center;
+  text-align: -webkit-center;
+}
