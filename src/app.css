@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise&family=Didact+Gothic');
+
 * {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-    Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-family: 'Didact Gothic';
   font-weight: 300;
   font-size: 16px;
   margin: 0;
@@ -12,9 +13,13 @@ body {
   width: 100%;
 }
 
+h1, h2, h3, h4, h5{
+  font-family: 'Waiting for the Sunrise';
+}
+
 a {
   text-decoration: none;
-  color: #108db8;
+  color: #6be405;
   font-weight: bold;
 }
 

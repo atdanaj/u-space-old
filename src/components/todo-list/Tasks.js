@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
-import { GET_TODOS } from "../graphql/queries";
+import { GET_TODOS } from "../../graphql/queries";
 import Task from "./Task";
 import "./Tasks.css";
 
