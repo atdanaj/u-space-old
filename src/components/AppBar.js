@@ -77,7 +77,7 @@ const ResponsiveAppBar = () => {
             >
  {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <span textAlign="center">{page}</span>
                 </MenuItem>
               ))}
             </Menu>
@@ -99,7 +99,7 @@ const ResponsiveAppBar = () => {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', fontFamily: "sans-serif" }}
               >
                 {page}
               </Button>
@@ -130,7 +130,7 @@ const ResponsiveAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <span textAlign="center">{setting}</span>
                 </MenuItem>
               ))}
             </Menu>

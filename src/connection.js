@@ -10,7 +10,7 @@ const authLink = setContext((_, { headers }) => {
    });
    //instantiate ApolloClient
    const httpLink = createHttpLink({
-     uri: 'https://subtle-shad-63.hasura.app/v1/graphql',
+     uri: 'https://u-space.hasura.app/v1/graphql',
     });
     
     export default new ApolloClient({

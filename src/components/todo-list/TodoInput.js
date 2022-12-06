@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import { ADD_TODO, GET_TODOS } from "../graphql/queries";
+import { ADD_TODO, GET_TODOS } from "../../graphql/queries";
 import "./TodoInput.css";
 
 const updateCache = (cache, { data }) => {

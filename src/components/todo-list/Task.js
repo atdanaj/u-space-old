@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 
-import { GET_TODOS, REMOVE_TODO, TOGGLE_COMPLETED } from "../graphql/queries";
+import { GET_TODOS, REMOVE_TODO, TOGGLE_COMPLETED } from "../../graphql/queries";
 import "./Task.css";
 
 const Task = ({ todo }) => {
