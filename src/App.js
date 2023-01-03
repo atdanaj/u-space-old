@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { Root, Routes, addPrefetchExcludes } from 'react-static'
+import { Root, addPrefetchExcludes } from 'react-static'
 import { ApolloProvider } from "@apollo/client";
-import { Router } from 'components/Router'
-import Dynamic from 'containers/Dynamic'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './app.css'
 import ResponsiveAppBar from './components/AppBar'
 import connection from "./connection";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Index from './pages';
+import Visualize from './pages/visualize';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(['dynamic'])
@@ -25,9 +26,6 @@ const theme = createTheme({
 });
 
 
-
-
-
 function App() {
   const [token, setToken] = useState();
 
@@ -36,17 +34,17 @@ function App() {
   // }
   return (
     <ApolloProvider client={connection}>
-        {/* <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Waiting+for+the+Sunrise"></link> */}
     <ThemeProvider theme={theme}>
     <Root>
     <ResponsiveAppBar/>
     <div className="content">
       <React.Suspense fallback={<em>Loading...</em>}>
-        <Router>
-          <Dynamic path="dynamic" />
-          <Routes path="*" />
-        </Router>
+        <BrowserRouter>
+         <Routes>
+          <Route path="/visualize" element={ <Visualize/> } />
+          <Route path="/" element={ <Index/> } />
+         </Routes>
+        </BrowserRouter>
       </React.Suspense>
     </div>
   </Root>
