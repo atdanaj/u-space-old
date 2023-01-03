@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -12,7 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Manifest', 'Visualize'];
+const pages = [{title: 'Manifest', link: '/'}, {title: 'Visualize', link: '/visualize'}];
 const settings = ['Account', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -33,7 +32,6 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
 
 
   return (
@@ -76,8 +74,8 @@ const ResponsiveAppBar = () => {
               }}
             >
  {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <span textAlign="center">{page}</span>
+                <MenuItem key={page.title} onClick={handleCloseNavMenu} href={page.link}>
+                  <span textAlign="center">{page.title}</span>
                 </MenuItem>
               ))}
             </Menu>
@@ -97,11 +95,12 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.title}
                 onClick={handleCloseNavMenu}
+                href={page.link}
                 sx={{ my: 2, color: 'white', display: 'block', fontFamily: "sans-serif" }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
