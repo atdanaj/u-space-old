@@ -6,8 +6,8 @@ import './app.css'
 import ResponsiveAppBar from './components/AppBar'
 import connection from "./connection";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Index from './pages';
-import Visualize from './pages/visualize';
+import Index from './pages/Index';
+import Visualize from './pages/Visualize';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(['dynamic'])
@@ -27,11 +27,6 @@ const theme = createTheme({
 
 
 function App() {
-  const [token, setToken] = useState();
-
-  // if(!token) {
-  //   return <ThemeProvider theme={theme}><Login setToken={setToken} /></ThemeProvider>
-  // }
   return (
     <ApolloProvider client={connection}>
     <ThemeProvider theme={theme}>
