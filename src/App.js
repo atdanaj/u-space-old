@@ -6,8 +6,10 @@ import './app.css'
 import ResponsiveAppBar from './components/AppBar'
 import connection from "./connection";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Index from './pages/Index';
+import Manifest from './pages/Manifest';
 import Visualize from './pages/Visualize';
+import Login from './pages/Login'
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(['dynamic'])
@@ -27,17 +29,19 @@ const theme = createTheme({
 
 
 function App() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
     <ApolloProvider client={connection}>
     <ThemeProvider theme={theme}>
     <Root>
-    <ResponsiveAppBar/>
+    { isAuthenticated && <ResponsiveAppBar/> }
     <div className="content">
       <React.Suspense fallback={<em>Loading...</em>}>
         <BrowserRouter>
          <Routes>
           <Route path="/visualize" element={ <Visualize/> } />
-          <Route path="/" element={ <Index/> } />
+          <Route path="/manifest" element={ <Manifest/> } />
+          <Route path="/" element={ <Login/> } />
          </Routes>
         </BrowserRouter>
       </React.Suspense>

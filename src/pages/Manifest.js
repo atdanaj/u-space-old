@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoList from '../components/todo-list/todoList'
 
-const Index = () => {
+const Manifest = () => {
   return (
     <div style={{display: "flex", flex: 1, flexDirection: "row", justifyContent: "space-between", padding: '10px'}}>
  <TodoList title='Daily'></TodoList>
@@ -11,4 +11,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Manifest

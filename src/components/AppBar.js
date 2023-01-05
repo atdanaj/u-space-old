@@ -12,13 +12,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useAuth0 } from "@auth0/auth0-react";
 
-const pages = [{title: 'Manifest', link: '/'}, {title: 'Visualize', link: '/visualize'}];
+const pages = [{title: 'Manifest', link: '/manifest'}, {title: 'Visualize', link: '/visualize'}];
 const settings = ['Account', 'Logout'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,6 +35,11 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin });
+    handleCloseUserMenu();
+  }
 
 
   return (
@@ -130,11 +136,11 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <span textAlign="center">{setting}</span>
+              
+                <MenuItem key="logout" onClick={handleLogout}>
+                  <span textAlign="center">Logout</span>
                 </MenuItem>
-              ))}
+        
             </Menu>
           </Box>
         </Toolbar>
