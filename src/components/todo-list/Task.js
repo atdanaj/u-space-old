@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { GET_TODOS, REMOVE_TODO, TOGGLE_COMPLETED } from "../../graphql/queries";
 import "./Task.css";
 
-const Task = ({ todo }) => {
+const Task = ({ todo, userId }) => {
   const [removeTodoMutation] = useMutation(REMOVE_TODO);
   const [toggleCompletedMutation] = useMutation(TOGGLE_COMPLETED)
 
@@ -13,7 +13,7 @@ const Task = ({ todo }) => {
       variables: { id, completed: !completed },
       optimisticResponse: true,
       update: (cache) => {
-        const existingTodos = cache.readQuery({ query: GET_TODOS });
+        const existingTodos = cache.readQuery({ query: GET_TODOS,  variables: {id: userId.user} });
         const updatedTodo = existingTodos.todos.map((todo) => {
           if (todo.id === id) {
             return { ...todo, completed: !completed };
@@ -23,6 +23,7 @@ const Task = ({ todo }) => {
         });
         cache.writeQuery({
           query: GET_TODOS,
+          variables: {id: userId.user},
           data: { todos: updatedTodo },
         });
       },
@@ -34,10 +35,11 @@ const Task = ({ todo }) => {
       variables: { id },
       optimisticResponse: true,
       update: (cache) => {
-        const existingTodos = cache.readQuery({ query: GET_TODOS });
+        const existingTodos = cache.readQuery({ query: GET_TODOS, variables: {id: userId.user} });
         const todos = existingTodos.todos.filter((t) => t.id !== id);
         cache.writeQuery({
           query: GET_TODOS,
+          variables: {id: userId.user},
           data: { todos },
         });
       },

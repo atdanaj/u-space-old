@@ -1,21 +1,22 @@
 import { gql } from "@apollo/client";
 
 export const GET_TODOS = gql`
-  query GetTodos {
-    todos {
-      id
-      task
-      completed
-    }
+  query GetTodos($id: String) {
+    todos(where: {user_id: {_eq: $id}}) {
+    id
+    task
+    completed
+  }
   }
 `;
 
 export const ADD_TODO = gql`
-  mutation($task: String!) {
-    insert_todos_one(object: { task: $task }) {
+  mutation($task: String!, $id: String!) {
+    insert_todos_one(object: { task: $task, user_id: $id }) {
       id
       task
       completed
+      user_id
     }
   }
 `;

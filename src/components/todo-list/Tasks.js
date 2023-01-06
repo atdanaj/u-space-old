@@ -5,8 +5,8 @@ import { GET_TODOS } from "../../graphql/queries";
 import Task from "./Task";
 import "./Tasks.css";
 
-const Tasks = () => {
-  const { loading, error, data } = useQuery(GET_TODOS);
+const Tasks = (userId, frequency) => {
+  const { loading, error, data } = useQuery(GET_TODOS, {variables: {id: userId.user}});
 
   if (loading) {
     return <div className="tasks">Loading...</div>;
@@ -18,7 +18,7 @@ const Tasks = () => {
   return (
     <div className="tasks">
       {data.todos.map((todo) => (
-        <Task key={todo.id} todo={todo} />
+        <Task key={todo.id} todo={todo} userId={userId} />
       ))}
     </div>
   );
