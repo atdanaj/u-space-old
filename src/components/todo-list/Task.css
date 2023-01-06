@@ -13,3 +13,8 @@
   .completed {
     text-decoration: line-through;
   }
+
+  .overdue {
+    color: maroon;
+    font-weight: bold;
+  }

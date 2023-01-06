@@ -21,13 +21,14 @@ query getTodosByFrequency($id: String, $time: String = "") {
 `;
 
 export const ADD_TODO = gql`
-mutation ($task: String!, $id: String!, $time: String!) {
-  insert_todos_one(object: {task: $task, user_id: $id, frequency: $time}) {
+mutation ($task: String!, $id: String!, $time: String!, $dueDate: date) {
+  insert_todos_one(object: {task: $task, user_id: $id, frequency: $time, due_at: $dueDate}) {
     id
     task
     completed
     user_id
     frequency
+    due_at
   }
 }
 `;

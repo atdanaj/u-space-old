@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 
 import { GET_TODOS, GET_TODOS_BY_FREQUENCY } from "../../graphql/queries";
 import Task from "./Task";
+import List from '@mui/material/List';
 import "./Tasks.css";
 
 const Tasks = ({userId, frequency}) => {
@@ -17,9 +18,11 @@ const Tasks = ({userId, frequency}) => {
 
   return (
     <div className="tasks">
+       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {data.todos.map((todo) => (
         <Task key={todo.id} todo={todo} userId={userId} frequency={frequency}/>
       ))}
+      </List>
     </div>
   );
 };
