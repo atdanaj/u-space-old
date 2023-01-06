@@ -10,13 +10,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useAuth0 } from "@auth0/auth0-react";
 
-const pages = [{title: 'Manifest', link: '/'}, {title: 'Visualize', link: '/visualize'}];
+const pages = [{title: 'Manifest', link: '/manifest'}, {title: 'Visualize', link: '/visualize'}];
 const settings = ['Account', 'Logout'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -33,9 +36,15 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin });
+    handleCloseUserMenu();
+  }
+
 
   return (
-    <AppBar position="static">
+    isAuthenticated && (
+      <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
@@ -108,7 +117,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user.nickname} src={user.picture} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -127,16 +136,18 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <span textAlign="center">{setting}</span>
+              
+                <MenuItem key="logout" onClick={handleLogout}>
+                  <span textAlign="center">Logout</span>
                 </MenuItem>
-              ))}
+        
             </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+    )
+
   );
 };
 export default ResponsiveAppBar;
