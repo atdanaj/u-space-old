@@ -10,15 +10,26 @@ export const GET_TODOS = gql`
   }
 `;
 
-export const ADD_TODO = gql`
-  mutation($task: String!, $id: String!) {
-    insert_todos_one(object: { task: $task, user_id: $id }) {
-      id
-      task
-      completed
-      user_id
-    }
+export const GET_TODOS_BY_FREQUENCY = gql`
+query getTodosByFrequency($id: String, $time: String = "") {
+  todos(where: {user_id: {_eq: $id}, _and: {frequency: {_eq: $time}}}) {
+    id
+    task
+    completed
   }
+}
+`;
+
+export const ADD_TODO = gql`
+mutation ($task: String!, $id: String!, $time: String!) {
+  insert_todos_one(object: {task: $task, user_id: $id, frequency: $time}) {
+    id
+    task
+    completed
+    user_id
+    frequency
+  }
+}
 `;
 
 export const TOGGLE_COMPLETED = gql`

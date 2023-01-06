@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_TODO, GET_TODOS } from "../../graphql/queries";
+import { ADD_TODO, GET_TODOS_BY_FREQUENCY } from "../../graphql/queries";
 import "./TodoInput.css";
 
-export default (userId) => {
-
+const TodoInput = ({userId, frequency}) => {
   const updateCache = (cache, { data }) => {
     const existingTodos = cache.readQuery({
-      query: GET_TODOS,
-      variables: {id: userId.user}
+      query: GET_TODOS_BY_FREQUENCY,
+      variables: {id: userId, time: frequency}
     });
    
     const newTodo = data.insert_todos_one;
     cache.writeQuery({
-      query: GET_TODOS,
-      variables: {id: userId.user},
+      query: GET_TODOS_BY_FREQUENCY,
+      variables: {id: userId, time: frequency},
       data: { todos: [...existingTodos.todos, newTodo] },
     });
   };
@@ -22,7 +21,7 @@ export default (userId) => {
   const [task, setTask] = useState("");
   const [addTodo] = useMutation(ADD_TODO, { update: updateCache });
   const submitTask = () => {
-    addTodo({ variables: { task: task, id: userId.user } });
+    addTodo({ variables: { task: task, id: userId, time: frequency } });
     setTask("");
   };
 
@@ -42,3 +41,5 @@ export default (userId) => {
     </div>
   );
 };
+
+export default TodoInput;

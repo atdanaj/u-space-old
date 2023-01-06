@@ -1,12 +1,12 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
-import { GET_TODOS } from "../../graphql/queries";
+import { GET_TODOS, GET_TODOS_BY_FREQUENCY } from "../../graphql/queries";
 import Task from "./Task";
 import "./Tasks.css";
 
-const Tasks = (userId, frequency) => {
-  const { loading, error, data } = useQuery(GET_TODOS, {variables: {id: userId.user}});
+const Tasks = ({userId, frequency}) => {
+  const { loading, error, data } = useQuery(GET_TODOS_BY_FREQUENCY, {variables: {id: userId, time: frequency}});
 
   if (loading) {
     return <div className="tasks">Loading...</div>;
@@ -18,7 +18,7 @@ const Tasks = (userId, frequency) => {
   return (
     <div className="tasks">
       {data.todos.map((todo) => (
-        <Task key={todo.id} todo={todo} userId={userId} />
+        <Task key={todo.id} todo={todo} userId={userId} frequency={frequency}/>
       ))}
     </div>
   );
