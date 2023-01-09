@@ -29,7 +29,7 @@ const theme = createTheme({
 
 
 function App() {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   return (
     <ApolloProvider client={connection}>
     <ThemeProvider theme={theme}>

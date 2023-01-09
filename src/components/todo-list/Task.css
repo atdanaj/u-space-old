@@ -9,7 +9,3 @@
     padding: 5px 10px;
     justify-content: space-between;
   }
-  
-  .completed {
-    text-decoration: line-through;
-  }
