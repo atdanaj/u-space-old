@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-
+import moment from 'moment';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -54,22 +54,18 @@ const Task = ({ todo, userId, frequency }) => {
     });
   };
 
+  const isOverdue = (dueDate) => {
+    const now = moment();
+    if ((dueDate != null || dueDate != ' ') && now.isAfter(dueDate) ) {
+      return true;
+  }
+}
+
 
   return (
-    <div>
-    {/* <div key={todo.id} className="task">
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => toggleCompleted(todo)}
-      />
-      <span className={[todo.completed ? "completed" : "", todo.due_at >= new Date() ? "overdue": ""]}>{todo.task}</span>
-      <button type="submit" onClick={() => removeTodo(todo.id)}>
-        remove
-      </button>
-    </div> */}
+    <Fragment>
       
-       <ListItem
+       <ListItem sx={{ flexGrow: 1 }}
             key={todo.id}
             secondaryAction={
               <IconButton edge="end" aria-label="delete" onClick={() => removeTodo(todo.id)}>
@@ -78,7 +74,7 @@ const Task = ({ todo, userId, frequency }) => {
             }
             disablePadding
           >
-            <ListItemButton role={undefined} dense>
+            <ListItemButton role={undefined} sx={{ flexGrow: 1 }} dense>
               <ListItemIcon>
                 <Checkbox
                   edge="start"
@@ -89,12 +85,13 @@ const Task = ({ todo, userId, frequency }) => {
                   inputProps={{ 'aria-labelledby': `checkbox-list-label-${todo.id}` }}
                 />
               </ListItemIcon>
-              <ListItemText sx={[todo.completed && { textDecoration: 'line-through'}, todo.due_at >= new Date() && { color: 'maroon'}]} id={todo.is} primary={todo.task} />
+              <ListItemText sx={[todo.completed && { textDecoration: 'line-through'}, isOverdue(todo.due_at) && { color: 'firebrick'}]} id={todo.is} primary={todo.task} />
             </ListItemButton>
+         
          </ListItem>
          <Divider component="li" />
-  
-     </div>
+     
+     </Fragment>
   );
 };
 

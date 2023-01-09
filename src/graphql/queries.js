@@ -16,6 +16,7 @@ query getTodosByFrequency($id: String, $time: String = "") {
     id
     task
     completed
+    due_at
   }
 }
 `;

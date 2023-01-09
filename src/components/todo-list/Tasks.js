@@ -18,7 +18,7 @@ const Tasks = ({userId, frequency}) => {
 
   return (
     <div className="tasks">
-       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+       <List sx={{ width: '100%', bgcolor: 'background.paper', display: 'flex', flexGrow: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {data.todos.map((todo) => (
         <Task key={todo.id} todo={todo} userId={userId} frequency={frequency}/>
       ))}
