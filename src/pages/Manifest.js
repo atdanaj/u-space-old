@@ -37,7 +37,7 @@ const Manifest = () => {
             <Grid item xs={3} style={{ height: "100vh" }}>
               <Counter />
               <br />
-              <WaterTracker />
+              <WaterTracker user={user?.sub} />
               <br />
               <WorkoutTracker />
             </Grid>
