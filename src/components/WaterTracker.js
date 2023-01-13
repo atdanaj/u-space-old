@@ -21,7 +21,6 @@ const WaterTracker = () => {
     const newArray = [...isFilled];
     newArray.splice(index, 1, !oldValue);
     setIsFilled(newArray);
-    console.log("hey");
   };
 
   return (
@@ -33,7 +32,6 @@ const WaterTracker = () => {
       }}
     >
       <center>
-        {" "}
         <h2>Water Tracker</h2>
       </center>
       <br />
