@@ -1,0 +1,62 @@
+{
+  "prefetchRate": 5,
+  "maxThreads": null,
+  "disableRoutePrefixing": false,
+  "outputFileRate": 100,
+  "extensions": [
+    ".js",
+    ".jsx"
+  ],
+  "minLoadTime": 200,
+  "disablePreload": false,
+  "disableRuntime": false,
+  "preloadPollInterval": 300,
+  "productionSourceMaps": false,
+  "silent": false,
+  "entry": "index.js",
+  "plugins": [
+    [
+      "/Users/danajackson/u-space/node_modules/react-static-plugin-source-filesystem/node.api.js",
+      {
+        "location": "/Users/danajackson/u-space/src/pages"
+      }
+    ],
+    "/Users/danajackson/u-space/node_modules/react-static-plugin-reach-router/browser.api.js",
+    "/Users/danajackson/u-space/node_modules/react-static-plugin-sitemap/dist/node.api.js",
+    "/Users/danajackson/u-space"
+  ],
+  "paths": {
+    "ROOT": "/Users/danajackson/u-space",
+    "SRC": "/Users/danajackson/u-space/src",
+    "DIST": "/Users/danajackson/u-space/dist",
+    "ASSETS": "/Users/danajackson/u-space/dist",
+    "PLUGINS": "/Users/danajackson/u-space/plugins",
+    "TEMP": "/Users/danajackson/u-space/tmp",
+    "ARTIFACTS": "/Users/danajackson/u-space/artifacts",
+    "PUBLIC": "/Users/danajackson/u-space/public",
+    "NODE_MODULES": "/Users/danajackson/u-space/node_modules",
+    "EXCLUDE_MODULES": "/Users/danajackson/u-space/node_modules",
+    "PACKAGE": "/Users/danajackson/u-space/package.json",
+    "HTML_TEMPLATE": "/Users/danajackson/u-space/dist/index.html",
+    "STATIC_DATA": "/Users/danajackson/u-space/dist/staticData"
+  },
+  "siteRoot": "/",
+  "basePath": "",
+  "publicPath": "/",
+  "assetsPath": "",
+  "extractCssChunks": false,
+  "inlineCss": false,
+  "babelExcludes": [],
+  "devServer": {
+    "host": "localhost",
+    "port": 3000
+  },
+  "terser": {
+    "terserOptions": {
+      "mangle": {},
+      "parse": {},
+      "compress": {},
+      "output": {}
+    }
+  }
+}
