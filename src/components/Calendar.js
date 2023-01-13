@@ -2,13 +2,6 @@ import React from "react";
 import Calendar from "@ericz1803/react-google-calendar";
 
 const GoogleCal = () => {
-  const API_KEY = "AIzaSyBFvR3BwfUp6ineuEoawMHDneoEYHNeHyU";
-  let calendars = [
-    {
-      calendarId: "65f6ijm9g3sc3fh7a0b236mgsfvm5ip6@import.calendar.google.com",
-    },
-  ];
-
   return (
     <div>
       {/* <Calendar apiKey={API_KEY} calendars={calendars} /> */}
